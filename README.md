@@ -11,7 +11,7 @@ $ composer require jeffochoa/validator-factory
 
 You need to create a new instance of the `ValidatorFactory` class.
 
-```
+```php
 $factory = new JeffOchoa\ValidatorFactory();
 
 $validator = $factory->make($data = [], $rules);
@@ -24,7 +24,7 @@ You can learn more about the *Laravel Validator* in the [official documentation 
 
 You can specify a custom translation root directory
 
-```
+```php
 $validator->$validator->translationsRootPath(__DIR__ . '/../../src/')
     ->make($data = [], $rules = ['foo' => 'required'])
 ```
@@ -39,6 +39,6 @@ Inside that directory you will need to create the following structure:
 
 You can customize the structure above by specifying the following values when you create a new instance of the `ValidatorFactory::class`
 
-```
+```php
     $factory = new ValidatorFactory($namespace = 'lang', $lang = 'en', $group = 'validation');
 ```
