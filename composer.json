@@ -1,0 +1,30 @@
+{
+    "name": "jeffochoa/validator-factory",
+    "description": "Standalone library to use Illuminate\\Validation package outside the Laravel framework.",
+    "type": "library",
+    "version": "1.0.0",
+    "require": {
+        "illuminate/filesystem": "^5.6",
+        "illuminate/translation": "^5.6",
+        "illuminate/validation": "^5.6"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jefferson Ochoa (Jeff)"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JeffOchoa\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JeffOchoa\\Tests\\": "tests/"
+        }
+    }
+}
