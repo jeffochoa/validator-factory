@@ -7,7 +7,7 @@ From your terminal, run:
 $ composer require jeffochoa/validator-factory
 ```
 
-## Usage ##
+## Usage
 
 You need to create a new instance of the `ValidatorFactory` class.
 
@@ -20,12 +20,12 @@ This will return an instance of `Illuminate\Validation\Validator::class`.
 
 You can learn more about the *Laravel Validator* in the [official documentation website](https://laravel.com/docs/5.6/validation).
 
-## Customizing error messages ##
+## Customizing error messages
 
 You can specify a custom translation root directory
 
 ```php
-$validator->$validator->translationsRootPath(__DIR__ . '/../../src/')
+$validator->translationsRootPath(__DIR__ . '/../../src/')
     ->make($data = [], $rules = ['foo' => 'required'])
 ```
 
@@ -40,5 +40,5 @@ Inside that directory you will need to create the following structure:
 You can customize the structure above by specifying the following values when you create a new instance of the `ValidatorFactory::class`
 
 ```php
-    $factory = new ValidatorFactory($namespace = 'lang', $lang = 'en', $group = 'validation');
+$factory = new ValidatorFactory($namespace = 'lang', $lang = 'en', $group = 'validation');
 ```
