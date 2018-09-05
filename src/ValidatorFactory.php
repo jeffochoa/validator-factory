@@ -19,6 +19,8 @@ class ValidatorFactory
     // Translations root directory
     public $basePath;
 
+    public static $translator;
+
     public function __construct($namespace = 'lang', $lang = 'en', $group = 'validation')
     {
         $this->lang = $lang;
@@ -53,11 +55,26 @@ class ValidatorFactory
         $loader = new FileLoader(new Filesystem(), $this->basePath . $this->namespace);
         $loader->addNamespace($this->namespace, $this->basePath . $this->namespace);
         $loader->load($this->lang, $this->group, $this->namespace);
-        return new Translator($loader, $this->lang);
+        return static::$translator = new Translator($loader, $this->lang);
     }
 
     public function __call($method, $args)
     {
         return call_user_func_array([$this->factory, $method], $args);
+    }
+
+    /**
+     * Translate a key based on translation files
+     *
+     * @param string $key
+     * @return string
+     */
+    public static function trans(string $key): string
+    {
+        if(!is_null(static::$translator)) {
+            return static::$translator->trans($key);
+        } else {
+            return $key;
+        }
     }
 }
