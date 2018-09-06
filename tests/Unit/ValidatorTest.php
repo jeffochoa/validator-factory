@@ -4,6 +4,7 @@ namespace JeffOchoa\Tests\Unit;
 
 use JeffOchoa\Tests\TestCase;
 use JeffOchoa\ValidatorFactory;
+use JeffOchoa\Tests\Rules\isEqualToOneRule;
 
 class ValidatorTest extends TestCase
 {
@@ -50,5 +51,20 @@ class ValidatorTest extends TestCase
 
 
         $this->assertEquals('The foo field is required.', $errors['foo'][0]);
+    }
+
+    /** @test */
+    public function check_custom_rules_are_working()
+    {
+        $validator = new ValidatorFactory();
+
+        $data = ['foo' => 0];
+        $rules = ['foo' => new isEqualToOneRule];
+
+        $validator = $validator->make($data, $rules);
+        $errors = $validator->errors()->toArray();
+
+        $this->assertTrue($validator->fails());
+        $this->assertEquals('the value for foo is not equal to 1', $errors['foo'][0]);
     }
 }
