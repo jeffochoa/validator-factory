@@ -18,6 +18,6 @@ class isEqualToOneRule implements Rule
     {
         $key = 'validation.custom.isequaltoone';
 
-        return ValidatorFactory::trans($key);
+        return ValidatorFactory::$translator->trans($key);
     }
 }

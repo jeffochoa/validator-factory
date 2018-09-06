@@ -18,6 +18,6 @@ class RuleReturnsKeyOnFailedTranslationRule implements Rule
     {
         $key = 'validation.custom.notexist';
 
-        return ValidatorFactory::trans($key);
+        return ValidatorFactory::$translator->trans($key);
     }
 }
