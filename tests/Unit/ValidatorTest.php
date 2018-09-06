@@ -5,6 +5,7 @@ namespace JeffOchoa\Tests\Unit;
 use JeffOchoa\Tests\TestCase;
 use JeffOchoa\ValidatorFactory;
 use JeffOchoa\Tests\Rules\isEqualToOneRule;
+use JeffOchoa\Tests\Rules\RuleReturnsKeyOnFailedTranslationRule;
 
 class ValidatorTest extends TestCase
 {
@@ -66,5 +67,20 @@ class ValidatorTest extends TestCase
 
         $this->assertTrue($validator->fails());
         $this->assertEquals('the value for foo is not equal to 1', $errors['foo'][0]);
+    }
+
+    /** @test */
+    public function check_custom_rule_returns_key_on_failed_translation()
+    {
+        $validator = new ValidatorFactory();
+
+        $data = ['foo' => 0];
+        $rules = ['foo' => new RuleReturnsKeyOnFailedTranslationRule];
+
+        $validator = $validator->make($data, $rules);
+        $errors = $validator->errors()->toArray();
+
+        $this->assertTrue($validator->fails());
+        $this->assertEquals('validation.custom.notexist', $errors['foo'][0]);
     }
 }
