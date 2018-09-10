@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'custom'                => [
+        'isequaltoone'       => 'the value for :attribute is not equal to 1'
+    ],
     'accepted'                => 'The :attribute must be accepted.',
     'active_url'            => 'The :attribute is not a valid URL.',
     'after'                => 'The :attribute must be a date after :date.',

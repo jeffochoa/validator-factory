@@ -42,3 +42,6 @@ You can customize the structure above by specifying the following values when yo
 ```php
 $factory = new ValidatorFactory($namespace = 'lang', $lang = 'en', $group = 'validation');
 ```
+
+If your plan is to use a custom rule object you would generally call the `trans` helper inside your `messages()` method when working inside of Laravel.
+However you will not have access tot he `trans` helper outside of Laravel so you will need to use `ValidatorFactory::trans($key)` instead.
