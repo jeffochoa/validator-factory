@@ -46,7 +46,8 @@ class ValidatorTest extends TestCase
     {
         $validator = new ValidatorFactory();
 
-        $result = $validator->translationsRootPath(__DIR__ . '/../../src/')
+        $result = $validator
+            ->translationsRootPath(__DIR__ . '/../../src/')
             ->make($data = [], $rules = ['foo' => 'required']);
         $errors = $result->errors()->ToArray();
 
@@ -62,7 +63,9 @@ class ValidatorTest extends TestCase
         $data = ['foo' => 0];
         $rules = ['foo' => new isEqualToOneRule];
 
-        $validator = $validator->make($data, $rules);
+        $validator = $validator
+            ->translationsRootPath(__DIR__ . '/')
+            ->make($data, $rules);
         $errors = $validator->errors()->toArray();
 
         $this->assertTrue($validator->fails());

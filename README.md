@@ -44,4 +44,4 @@ $factory = new ValidatorFactory($namespace = 'lang', $lang = 'en', $group = 'val
 ```
 
 If your plan is to use a custom rule object you would generally call the `trans` helper inside your `messages()` method when working inside of Laravel.
-However you will not have access tot he `trans` helper outside of Laravel so you will need to use `ValidatorFactory::trans($key)` instead.
+However you will not have access to the `trans` helper outside of Laravel so you will need to use `ValidatorFactory::trans($key)` instead.

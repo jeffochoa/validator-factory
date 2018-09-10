@@ -2,11 +2,11 @@
     "name": "jeffochoa/validator-factory",
     "description": "Standalone library to use Illuminate\\Validation package outside the Laravel framework.",
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require": {
-        "illuminate/filesystem": "5.6.*",
-        "illuminate/translation": "5.6.*",
-        "illuminate/validation": "5.6.*"
+        "illuminate/filesystem": "^5.6",
+        "illuminate/translation": "^5.6",
+        "illuminate/validation": "^5.6"
     },
     "require-dev": {
         "orchestra/testbench": "^3.4"
