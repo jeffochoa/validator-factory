@@ -2,6 +2,6 @@
 
 return [
     'custom' => [
-        'isequaltoone'       => 'the value for :attribute is not equal to 1'
-    ]
+        'isequaltoone'       => 'the value for :attribute is not equal to 1',
+    ],
 ];

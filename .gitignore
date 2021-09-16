@@ -1,5 +1,8 @@
-vendor/
+build
 composer.lock
-phpunit.xml
-node_modules/
+docs
+vendor
+coverage
+.phpunit.result.cache
 .idea
+.php-cs-fixer.cache

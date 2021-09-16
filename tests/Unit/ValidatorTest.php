@@ -2,10 +2,10 @@
 
 namespace JeffOchoa\Tests\Unit;
 
-use JeffOchoa\Tests\TestCase;
-use JeffOchoa\ValidatorFactory;
 use JeffOchoa\Tests\Rules\isEqualToOneRule;
 use JeffOchoa\Tests\Rules\RuleReturnsKeyOnFailedTranslationRule;
+use JeffOchoa\Tests\TestCase;
+use JeffOchoa\ValidatorFactory;
 
 class ValidatorTest extends TestCase
 {
@@ -15,15 +15,15 @@ class ValidatorTest extends TestCase
         $validator = new ValidatorFactory();
 
         $data = [
-            'foo' => 'bar'
+            'foo' => 'bar',
         ];
 
         $rules = [
-            'baz' => 'required|url'
+            'baz' => 'required|url',
         ];
 
         $validator = $validator->make($data, $rules);
-        $errors = $validator->errors()->toArray();
+        $errors    = $validator->errors()->toArray();
 
         $this->assertTrue($validator->fails());
         $this->assertEquals('The baz field is required.', $errors['baz'][0]);
@@ -60,7 +60,7 @@ class ValidatorTest extends TestCase
     {
         $validator = new ValidatorFactory();
 
-        $data = ['foo' => 0];
+        $data  = ['foo' => 0];
         $rules = ['foo' => new isEqualToOneRule];
 
         $validator = $validator
@@ -77,11 +77,11 @@ class ValidatorTest extends TestCase
     {
         $validator = new ValidatorFactory();
 
-        $data = ['foo' => 0];
+        $data  = ['foo' => 0];
         $rules = ['foo' => new RuleReturnsKeyOnFailedTranslationRule];
 
         $validator = $validator->make($data, $rules);
-        $errors = $validator->errors()->toArray();
+        $errors    = $validator->errors()->toArray();
 
         $this->assertTrue($validator->fails());
         $this->assertEquals('validation.custom.notexist', $errors['foo'][0]);
