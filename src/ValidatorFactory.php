@@ -2,59 +2,81 @@
 
 namespace JeffOchoa;
 
-use Illuminate\Validation;
-use Illuminate\Translation;
-use Illuminate\Validation\Factory;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Translation\Translator;
+use Illuminate\Validation\Factory;
 
 class ValidatorFactory
 {
-    public $lang;
-    public $group;
-    public $factory;
-    public $namespace;
+    public string $lang;
 
-    // Translations root directory
-    public $basePath;
+    public string $group;
 
-    public static $translator;
+    public Factory $factory;
 
-    public function __construct($namespace = 'lang', $lang = 'en', $group = 'validation')
+    public string $namespace;
+
+    /**
+     * Translations root directory.
+     *
+     * @var string
+     */
+    public string $basePath;
+
+    public static ?Translator $translator = null;
+
+    public function __construct(string $namespace = 'lang', string $lang = 'en', string $group = 'validation')
     {
-        $this->lang = $lang;
-        $this->group = $group;
+        $this->lang      = $lang;
+        $this->group     = $group;
         $this->namespace = $namespace;
-        $this->basePath = $this->getTranslationsRootPath();
-        $this->factory = new Factory($this->loadTranslator());
+        $this->basePath  = $this->getTranslationsRootPath();
+        $this->factory   = new Factory($this->loadTranslator());
     }
 
-    public function translationsRootPath(string $path = '')
+    /**
+     * @param string $path
+     *
+     * @return static
+     */
+    public function translationsRootPath(string $path = ''): static
     {
         if (!empty($path)) {
             $this->basePath = $path;
             $this->reloadValidatorFactory();
         }
+
         return $this;
     }
 
-    private function reloadValidatorFactory()
+    /**
+     * @return static
+     */
+    private function reloadValidatorFactory(): static
     {
         $this->factory = new Factory($this->loadTranslator());
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTranslationsRootPath() : string
     {
         return dirname(__FILE__) . '/';
     }
 
+    /**
+     * @return Translator
+     */
     public function loadTranslator() : Translator
     {
         $loader = new FileLoader(new Filesystem(), $this->basePath . $this->namespace);
         $loader->addNamespace($this->namespace, $this->basePath . $this->namespace);
         $loader->load($this->lang, $this->group, $this->namespace);
+
         return static::$translator = new Translator($loader, $this->lang);
     }
 
